@@ -14,7 +14,6 @@ node *Create(char val)
     head->val = val;
     head->left = NULL;
     head->right = NULL;
-    // cout<<"Node created wiht val "<<val<<endl;
     return head;
 };
 
@@ -26,6 +25,19 @@ void Inorder(struct node *head)
     // Inorder(head);
     cout << head->val << " ";
     Inorder(head->right);
+};
+
+
+
+void preorder(struct node *head)
+{
+    if (head == NULL)
+        return;
+
+    cout << head->val << " ";
+    preorder(head->left);
+    // Inorder(head);
+    preorder(head->right);
 };
 
 int hieght(node *head)
@@ -50,6 +62,10 @@ node *InsertComp(node *head, char val)
 
     if (head != NULL)
         q.push(head);
+    else {
+        head  = Create(val);
+        return head;
+    }
     while (flag == 0)
     {
         head = q.front();
@@ -75,16 +91,30 @@ node *InsertComp(node *head, char val)
     return temp;
 };
 
+node *BalancedBTree( node *head){
+    node *temp  = head;
+    vector<int> vec = {};
+    
+    // Inorder get
+
+
+    return temp;
+}
+
 int main()
 {
 
-    node *root = new node();
-    root = Create('A');
+    node *root = NULL;
+    // root = Create('A');
+    // root->left = Create('B');
+    // root->right = Create('C');
+    // root->right->left = Create('D');
+    // root->right->left->right = Create('E');
+    root = InsertComp(root,'A');
     root = InsertComp(root,'B');
     root = InsertComp(root,'C');
     root = InsertComp(root,'D');
     root = InsertComp(root,'E');
-    // root = InsertComp(root,'A');
     // cout<<root->val;
     // root = Create('A');
     // // root->val = 'A';
@@ -96,7 +126,10 @@ int main()
     // root->left->right= Create('E');
     // // root= Create(root->right,'C');
     // cout<<"Inorder is = ";
-    Inorder(root);
+    // cout<<root->left->val;
     
+    // Inorder(root);
+    preorder(root);
+
     return 0;
 }
